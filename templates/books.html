@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sách</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        th {
+            background: #2e7d32;
+            color: white;
+        }
+
+        a {
+            color: #1565c0;
+            text-decoration: none;
+        }
+
+        .available {
+            color: green;
+            font-weight: bold;
+        }
+
+        .unavailable {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Danh sách sách</h1>
+<p>
+    <a href="{{ url_for('index') }}">Trang chủ</a>
+</p>
+
+<form method="get" action="{{ url_for('books') }}">
+    <label>Chọn thể loại:</label>
+    <select name="category">
+        <option value="">Tất cả</option>
+        {% for category in categories %}
+            <option value="{{ category }}"
+                {% if category == selected_category %}
+                    selected
+                {% endif %}
+            >
+                {{ category }}
+            </option>
+        {% endfor %}
+    </select>
+    <button type="submit">Lọc</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Tên sách</th>
+        <th>Tác giả</th>
+        <th>Năm</th>
+        <th>Thể loại</th>
+        <th>Trạng thái</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.id }}</td>
+        <td>
+            <a href="{{ url_for('book_detail', book_id=book.id) }}">
+                {{ book.title }}
+            </a>
+        </td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.year }}</td>
+        <td>{{ book.category }}</td>
+        <td>
+            {% if book.available %}
+                <span class="available">
+                    Có sẵn
+                </span>
+            {% else %}
+                <span class="unavailable">
+                    Đang được mượn
+                </span>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

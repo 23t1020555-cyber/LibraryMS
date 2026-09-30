@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>LibraryMS v0.1</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+        }
+
+        header {
+            background: #5759e1;
+            color: white;
+            padding: 20px;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        main {
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #6c88f7;
+            color: white;
+        }
+
+        .available {
+            color: rgb(99, 81, 239);
+            font-weight: bold;
+        }
+
+        .unavailable {
+            color: red;
+            font-weight: bold;
+        }
+
+        .book {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        select {
+            padding: 8px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #1565c0;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>LibraryMS v0.1</h1>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Trang chủ</a>
+        <a href="{{ url_for('books') }}">Danh sách sách</a>
+        <a href="{{ url_for('api_books') }}">API Books</a>
+    </nav>
+</header>
+
+<main>
+
+    <h2>Thư viện sách</h2>
+
+    <p>
+        Tổng số sách:
+        <strong>{{ total }}</strong>
+    </p>
+
+    <p>
+        Số sách sẵn sàng cho mượn:
+        <strong>{{ available }}</strong>
+    </p>
+
+</main>
+
+</body>
+</html>

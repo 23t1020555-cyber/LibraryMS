@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết sách</title>
+</head>
+
+<body>
+
+<h1>Chi tiết sách</h1>
+<p>
+    <a href="{{ url_for('books') }}">
+        ← Quay lại danh sách
+    </a>
+</p>
+<div>
+    <p>
+        <strong>ID:</strong>
+        {{ book.id }}
+    </p>
+    <p>
+        <strong>Tên sách:</strong>
+        {{ book.title }}
+    </p>
+    <p>
+        <strong>Tác giả:</strong>
+        {{ book.author }}
+    </p>
+    <p>
+        <strong>Năm xuất bản:</strong>
+        {{ book.year }}
+    </p>
+    <p>
+        <strong>Thể loại:</strong>
+        {{ book.category }}
+    </p>
+    <p>
+        <strong>Trạng thái:</strong>
+        {% if book.available %}
+            Có sẵn
+        {% else %}
+            Đang được mượn
+        {% endif %}
+
+    </p>
+</div>
+</body>
+</html>
